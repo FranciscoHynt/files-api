@@ -15,7 +15,7 @@ public class RequestController {
     }
 
     @RequestMapping(value = "/uploader", method = RequestMethod.POST)
-    public ResponseEntity uploader(@RequestBody String fileName, @RequestBody MultipartFile file) {
+    public ResponseEntity uploader(@RequestPart String fileName, @RequestPart MultipartFile file) {
 
         return filesService.saveFile(fileName, file);
     }
