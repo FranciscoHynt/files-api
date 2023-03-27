@@ -15,13 +15,14 @@ public class RequestController {
     }
 
     @RequestMapping(value = "/uploader", method = RequestMethod.POST)
-    public ResponseEntity uploader(@RequestPart String fileName, @RequestPart MultipartFile file) {
+    public ResponseEntity uploader(@RequestPart(name = "fileName") String fileName,
+                                   @RequestPart(name = "file") MultipartFile file) {
 
         return filesService.saveFile(fileName, file);
     }
 
     @RequestMapping(value = "/downloader", method = RequestMethod.GET)
-    public ResponseEntity<String> downloader(@RequestBody String fileName) {
+    public ResponseEntity<String> downloader(@RequestParam(name = "fileName") String fileName) {
         return filesService.retrieveFile(fileName);
     }
 }
